@@ -15,7 +15,7 @@ pipeline {
                             sh "terraform ${params.ACTION} -auto-approve"
                             // def ip_address = sh(script: 'terraform output public_ip', returnStdout: true).trim()
                             // writeFile file: '../Ansible/inventory', text: "monitoring-server ansible_host=${ip_address}"
-                            // }
+                            }
                         }
                 }
             }
