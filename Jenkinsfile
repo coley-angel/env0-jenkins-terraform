@@ -47,12 +47,7 @@ pipeline {
             }
             steps {
                 script {
-                    def ip_address = sh(script: 'terraform -chdir=Terraform output -raw public_ip', returnStdout: true).trim()
-                    def grafana_url = "http://${ip_address}:3000"
-                    def prometheus_url = "http://${ip_address}:9090"
-                    echo "Grafana URL: ${grafana_url}"
-                    echo "Prometheus URL: ${prometheus_url}"
-                    writeFile file: 'urls.txt', text: "Grafana URL: ${grafana_url}\nPrometheus URL: ${prometheus_url}"
+                    echo "running this too!" > urls.txt
                 }
             }
         }
