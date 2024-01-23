@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     echo 'Waiting for SSH agent...'
-                    sleep 120 // waits for 120 seconds before continuing
+                    sleep 12 // waits for 120 seconds before continuing
                 }
             }
         }
@@ -36,11 +36,9 @@ pipeline {
                 expression { params.ACTION == 'apply' }
             }
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'sshCredentials', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
                     dir('Ansible') {
-                        sh "ansible-playbook -i inventory appPlaybook.yaml --private-key=$SSH_KEY -u $SSH_USER"
+                        sh "ansible-playbook -i inventory appPlaybook.yaml"
                     }
-                }
             }
         }
         stage('Output URLs') {
